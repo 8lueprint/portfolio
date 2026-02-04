@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pranit Choudhari | Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#ffffff;
+  color:#1f2937;
+  line-height:1.7;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:60px 10%;
+  background:linear-gradient(to bottom,#f8fbff,#ffffff);
+}
+
+.profile-img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  overflow:hidden;
+  border:5px solid #2563eb;
+  margin-bottom:30px;
+}
+
+.profile-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+h1{
+  font-size:52px;
+}
+
+h1 span{ color:#2563eb; }
+
+.hero p{
+  font-size:20px;
+  margin:20px 0 35px;
+  color:#4b5563;
+}
+
+.btn{
+  padding:16px 44px;
+  border:none;
+  border-radius:40px;
+  background:#2563eb;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* SECTIONS */
+section{
+  padding:90px 10%;
+}
+
+section h2{
+  font-size:38px;
+  color:#2563eb;
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.about-text{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  font-size:18px;
+}
+
+/* SKILLS */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  margin-top:40px;
+}
+
+.card{
+  background:#f1f5ff;
+  padding:30px;
+  border-radius:18px;
+  position:relative;
+  transition:0.3s;
+  overflow:hidden;
+}
+
+.card i{
+  font-size:38px;
+  color:#2563eb;
+  margin-bottom:10px;
+}
+
+.card h4{
+  font-size:20px;
+}
+
+/* HOVER DESCRIPTION */
+.card .hover-info{
+  position:absolute;
+  inset:0;
+  background:rgba(37,99,235,0.95);
+  color:#fff;
+  padding:25px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:0.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:15px;
+}
+
+.card:hover .hover-info{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+/* PROJECTS */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
+  margin-top:40px;
+}
+
+.project-card{
+  background:#f9fafb;
+  padding:30px;
+  border-radius:18px;
+  border-left:6px solid #2563eb;
+  position:relative;
+  overflow:hidden;
+}
+
+.project-card h3{
+  font-size:22px;
+}
+
+.project-card .hover-info{
+  position:absolute;
+  inset:0;
+  background:rgba(37,99,235,0.95);
+  color:#fff;
+  padding:30px;
+  opacity:0;
+  transition:0.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.project-card:hover .hover-info{
+  opacity:1;
+}
+
+/* CONTACT */
+form{
+  max-width:550px;
+  margin:auto;
+  margin-top:40px;
+}
+
+input,textarea{
+  width:100%;
+  padding:15px;
+  margin:12px 0;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+}
+
+/* FOOTER */
+footer{
+  background:#f1f5ff;
+  text-align:center;
+  padding:25px;
+}
+
+/* RESPONSIVE */
+@media(max-width:992px){
+  .skills{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:576px){
+  h1{ font-size:34px; }
+  section{ padding:70px 6%; }
+  .skills{ grid-template-columns:1fr; }
+
+  /* show hover info normally on mobile */
+  .hover-info{
+    position:static;
+    opacity:1;
+    background:#2563eb;
+    margin-top:15px;
+    border-radius:12px;
+    transform:none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="profile-img">
+      <img src="https://i.pinimg.com/736x/9d/16/4e/9d164e4e074d11ce4de0a508914537a8.jpg" alt="Pranit Photo">
+    </div>
+
+    <h1>Hello, I'm <span>Pranit</span></h1>
+    <p>Web Developer • BCA Student • Content Creator</p>
+    <button class="btn">Hire Me</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+<h2>About Me</h2>
+<p class="about-text">
+Motivated BCA student skilled in web development, social media handling,
+and creative content production.
+</p>
+</section>
+
+<!-- SKILLS -->
+<section>
+<h2>Skills</h2>
+<div class="skills">
+
+  <div class="card">
+    <i class="fab fa-html5"></i><h4>HTML5</h4>
+    <div class="hover-info">Semantic HTML, SEO structure, accessible layouts</div>
+  </div>
+
+  <div class="card">
+    <i class="fab fa-css3-alt"></i><h4>CSS3</h4>
+    <div class="hover-info">Responsive design, Flexbox, Grid, animations</div>
+  </div>
+
+  <div class="card">
+    <i class="fab fa-js"></i><h4>JavaScript</h4>
+    <div class="hover-info">DOM manipulation, events, interactive UI</div>
+  </div>
+
+  <div class="card">
+    <i class="fab fa-react"></i><h4>React</h4>
+    <div class="hover-info">Components, props, hooks basics</div>
+  </div>
+
+  <div class="card">
+    <i class="fas fa-palette"></i><h4>Canva</h4>
+    <div class="hover-info">Designing posts, reels covers & thumbnails</div>
+  </div>
+
+  <div class="card">
+    <i class="fas fa-bullhorn"></i><h4>Social Media Management</h4>
+    <div class="hover-info">Content planning, analytics & growth strategy</div>
+  </div>
+
+  <div class="card">
+    <i class="fas fa-pen-nib"></i><h4>Content Creation</h4>
+    <div class="hover-info">Hooks, captions, scripts & storytelling</div>
+  </div>
+
+  <div class="card">
+    <i class="fab fa-github"></i><h4>Git & GitHub</h4>
+    <div class="hover-info">Repositories, commits & collaboration</div>
+  </div>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section>
+<h2>Projects</h2>
+<div class="projects">
+
+  <div class="project-card">
+    <h3>Event Discovery System</h3>
+    <div class="hover-info">
+      Suggests nearby events using user preferences and location data.
+    </div>
+  </div>
+
+  <div class="project-card">
+    <h3>Salon Booking Application</h3>
+    <div class="hover-info">
+      Online appointment booking with time slots and notifications.
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section>
+<h2>Contact Me</h2>
+<form>
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <textarea placeholder="Your Message" required></textarea>
+  <button class="btn">Send Message</button>
+</form>
+</section>
+
+<footer>
+© 2026 Pranit Choudhari • Designed by Me
+</footer>
+
+</body>
+</html>
