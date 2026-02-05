@@ -2,335 +2,428 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pranit Choudhari | Portfolio</title>
+<title>Pranit | Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
+:root{
+  --primary:#2563eb;
+  --bg:#ffffff;
+  --text:#111827;
+  --card:#f3f6ff;
+  --footer:#0f172a;
+  /* Skill Colors */
+  --html-color: #e34c26;
+  --strategy-color: #10b981;
+  --content-color: #f59e0b;
+  --design-color: #8b5cf6;
 }
 
-body{
-  background:#ffffff;
-  color:#1f2937;
-  line-height:1.7;
+body.dark{
+  --bg:#0f172a;
+  --text:#f1f5f9;
+  --card:#1e293b;
+  --footer:#020617;
 }
 
-/* HERO */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{background:var(--bg);color:var(--text);transition:.3s;scroll-behavior:smooth;overflow-x: hidden;}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 10%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.85);
+  z-index:999;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+body.dark nav{background:rgba(2,6,23,0.9);}
+
+.logo{font-size:28px;font-weight:700;color:var(--primary);}
+nav ul{display:flex;gap:40px;list-style:none;align-items:center;}
+nav ul li a{text-decoration:none;font-size:16px;color:var(--text);font-weight:500;}
+nav ul li a:hover{color:var(--primary);}
+.toggle{cursor:pointer;font-size:20px;}
+.menu-toggle{display:none;font-size:26px;cursor:pointer;}
+
+/* HERO SECTION - CENTERED */
 .hero{
   min-height:100vh;
   display:flex;
-  align-items:center;
-  padding:60px 10%;
-  background:linear-gradient(to bottom,#f8fbff,#ffffff);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;   
+  padding: 100px 5% 60px; /* Reduced side padding for more horizontal space */
+}
+
+.hero-content{
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .profile-img{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  overflow:hidden;
-  border:5px solid #2563eb;
-  margin-bottom:30px;
+  width:200px;
+  height:200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid var(--primary);
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(37,99,235,0.2);
+  background: #eee;
+  position: relative;
 }
 
 .profile-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
 }
 
-h1{
-  font-size:52px;
-}
+.hero h1{font-size:60px; line-height: 1.2; margin-bottom: 10px;}
+.hero h1 span{color:var(--primary);}
 
-h1 span{ color:#2563eb; }
-
+/* FIX: Creator wrapping issue */
 .hero p{
-  font-size:20px;
-  margin:20px 0 35px;
-  color:#4b5563;
+  font-size:22px; 
+  margin: 5px 0 30px; 
+  opacity: 0.8; 
+  white-space: nowrap; /* Forces text to stay on one line */
+  max-width: none;     /* Removes restrictions */
 }
 
 .btn{
-  padding:16px 44px;
-  border:none;
+  padding:15px 45px;
   border-radius:40px;
-  background:#2563eb;
+  background:var(--primary);
   color:#fff;
+  font-size:16px;
   font-weight:600;
-  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
 }
+.btn:hover{transform: translateY(-8px); box-shadow: 0 12px 24px rgba(37,99,235,0.4);}
+
+.socials{
+  margin-top:30px;
+  display:flex;
+  gap:25px;
+}
+.socials a{
+  font-size:26px;
+  color:var(--text);
+  transition:.3s;
+}
+.socials a:hover{color:var(--primary); transform: translateY(-8px) scale(1.15);}
 
 /* SECTIONS */
-section{
-  padding:90px 10%;
-}
-
+section{padding:100px 10%;}
 section h2{
-  font-size:38px;
-  color:#2563eb;
+  font-size:40px;
   text-align:center;
-  margin-bottom:30px;
+  color:var(--primary);
+  margin-bottom:60px;
 }
 
-.about-text{
-  max-width:800px;
-  margin:auto;
-  text-align:center;
-  font-size:18px;
-}
-
-/* SKILLS */
+/* SKILLS - THE LIFT ANIMATION */
 .skills{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:30px;
-  margin-top:40px;
+  gap:25px;
 }
 
-.card{
-  background:#f1f5ff;
-  padding:30px;
-  border-radius:18px;
-  position:relative;
-  transition:0.3s;
-  overflow:hidden;
+.card {
+  background: var(--card);
+  padding: 45px 20px;
+  border-radius: 24px;
+  position: relative;
+  text-align: center;
+  border-bottom: 6px solid transparent;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.card i{
-  font-size:38px;
-  color:#2563eb;
-  margin-bottom:10px;
+.card:hover {
+  transform: translateY(-25px); /* Strong Lift */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
 }
 
-.card h4{
-  font-size:20px;
-}
+.card h4{font-size:19px; margin-top:15px;}
 
-/* HOVER DESCRIPTION */
-.card .hover-info{
+/* Color coding for cards */
+.skill-html{ border-bottom-color: var(--html-color); }
+.skill-html i{ color: var(--html-color); }
+.skill-strategy{ border-bottom-color: var(--strategy-color); }
+.skill-strategy i{ color: var(--strategy-color); }
+.skill-content{ border-bottom-color: var(--content-color); }
+.skill-content i{ color: var(--content-color); }
+.skill-design{ border-bottom-color: var(--design-color); }
+.skill-design i{ color: var(--design-color); }
+
+.hover-info{
   position:absolute;
   inset:0;
-  background:rgba(37,99,235,0.95);
   color:#fff;
-  padding:25px;
-  opacity:0;
-  transform:translateY(10px);
-  transition:0.3s;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  font-size:15px;
+  padding:25px;
+  opacity:0;
+  transition: 0.4s ease-in-out;
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
 }
 
-.card:hover .hover-info{
-  opacity:1;
-  transform:translateY(0);
-}
+.skill-html .hover-info { background: var(--html-color); }
+.skill-strategy .hover-info { background: var(--strategy-color); }
+.skill-content .hover-info { background: var(--content-color); }
+.skill-design .hover-info { background: var(--design-color); }
 
-.card:hover{
-  transform:translateY(-8px);
-}
+.card:hover .hover-info { opacity:1; }
 
-/* PROJECTS */
+/* PROJECTS - LIFT ANIMATION */
 .projects{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
   gap:35px;
-  margin-top:40px;
 }
 
 .project-card{
-  background:#f9fafb;
-  padding:30px;
-  border-radius:18px;
-  border-left:6px solid #2563eb;
+  background:var(--card);
+  padding:45px;
+  border-radius:28px;
   position:relative;
   overflow:hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
-.project-card h3{
-  font-size:22px;
+.project-card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
 }
 
 .project-card .hover-info{
   position:absolute;
   inset:0;
-  background:rgba(37,99,235,0.95);
+  background: var(--primary);
   color:#fff;
-  padding:30px;
-  opacity:0;
-  transition:0.3s;
   display:flex;
+  flex-direction: column;
   align-items:center;
   justify-content:center;
-  text-align:center;
+  opacity:0;
+  transition:.4s ease;
+  padding:40px;
+  text-align: center;
+}
+.project-card:hover .hover-info{opacity:1;}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.project-card:hover .hover-info{
-  opacity:1;
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* CONTACT */
-form{
-  max-width:550px;
-  margin:auto;
-  margin-top:40px;
-}
-
+form{max-width:550px; margin:auto;}
 input,textarea{
   width:100%;
-  padding:15px;
+  padding:18px;
   margin:12px 0;
-  border-radius:10px;
-  border:1px solid #cbd5e1;
+  border-radius:15px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--card);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
 }
 
-/* FOOTER */
 footer{
-  background:#f1f5ff;
+  background:var(--footer);
+  color:#fff;
   text-align:center;
-  padding:25px;
+  padding:70px 20px;
 }
 
-/* RESPONSIVE */
-@media(max-width:992px){
-  .skills{ grid-template-columns:repeat(2,1fr); }
-}
-
-@media(max-width:576px){
-  h1{ font-size:34px; }
-  section{ padding:70px 6%; }
-  .skills{ grid-template-columns:1fr; }
-
-  /* show hover info normally on mobile */
-  .hover-info{
-    position:static;
-    opacity:1;
-    background:#2563eb;
-    margin-top:15px;
-    border-radius:12px;
-    transform:none;
+/* MOBILE */
+@media(max-width:768px){
+  .menu-toggle{display:block;}
+  nav ul{
+    position:absolute;
+    top:75px;
+    right:0;
+    background:var(--bg);
+    flex-direction:column;
+    width:260px;
+    padding:35px;
+    gap:25px;
+    transform:translateX(100%);
+    transition:.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  nav ul.show{transform:translateX(0);}
+  .hero h1{font-size:45px;}
+  /* Allow wrap on very small screens to prevent overflow */
+  .hero p { white-space: normal; font-size: 18px; }
 }
 </style>
 </head>
+
 <body>
 
-<!-- HERO -->
+<nav>
+  <h2 class="logo">Pranit</h2>
+  <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  <ul id="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="toggle" onclick="toggleMode()">🌙</li>
+  </ul>
+</nav>
+
 <div class="hero">
-  <div>
+  <div class="hero-content">
     <div class="profile-img">
-      <img src="https://i.pinimg.com/736x/9d/16/4e/9d164e4e074d11ce4de0a508914537a8.jpg" alt="Pranit Photo">
+      <img src="photo.jpg" alt="Pranit Choudhari" onerror="this.src='https://ui-avatars.com/api/?name=Pranit+Choudhari&background=2563eb&color=fff&size=200'">
     </div>
 
     <h1>Hello, I'm <span>Pranit</span></h1>
-    <p>Web Developer • BCA Student • Content Creator</p>
-    <button class="btn">Hire Me</button>
-  </div>
-</div>
+    <p>Web Developer • Social Media Strategist • Content Creator</p>
 
-<!-- ABOUT -->
-<section>
-<h2>About Me</h2>
-<p class="about-text">
-Motivated BCA student skilled in web development, social media handling,
-and creative content production.
-</p>
-</section>
+    <a href="#" class="btn">Download Resume</a>
 
-<!-- SKILLS -->
-<section>
-<h2>Skills</h2>
-<div class="skills">
-
-  <div class="card">
-    <i class="fab fa-html5"></i><h4>HTML5</h4>
-    <div class="hover-info">Semantic HTML, SEO structure, accessible layouts</div>
-  </div>
-
-  <div class="card">
-    <i class="fab fa-css3-alt"></i><h4>CSS3</h4>
-    <div class="hover-info">Responsive design, Flexbox, Grid, animations</div>
-  </div>
-
-  <div class="card">
-    <i class="fab fa-js"></i><h4>JavaScript</h4>
-    <div class="hover-info">DOM manipulation, events, interactive UI</div>
-  </div>
-
-  <div class="card">
-    <i class="fab fa-react"></i><h4>React</h4>
-    <div class="hover-info">Components, props, hooks basics</div>
-  </div>
-
-  <div class="card">
-    <i class="fas fa-palette"></i><h4>Canva</h4>
-    <div class="hover-info">Designing posts, reels covers & thumbnails</div>
-  </div>
-
-  <div class="card">
-    <i class="fas fa-bullhorn"></i><h4>Social Media Management</h4>
-    <div class="hover-info">Content planning, analytics & growth strategy</div>
-  </div>
-
-  <div class="card">
-    <i class="fas fa-pen-nib"></i><h4>Content Creation</h4>
-    <div class="hover-info">Hooks, captions, scripts & storytelling</div>
-  </div>
-
-  <div class="card">
-    <i class="fab fa-github"></i><h4>Git & GitHub</h4>
-    <div class="hover-info">Repositories, commits & collaboration</div>
-  </div>
-
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section>
-<h2>Projects</h2>
-<div class="projects">
-
-  <div class="project-card">
-    <h3>Event Discovery System</h3>
-    <div class="hover-info">
-      Suggests nearby events using user preferences and location data.
+    <div class="socials">
+      <a href="https://www.instagram.com/cawncept?igsh=aTdxeGg0ZTg3OGRj"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/8lueprinta"><i class="fab fa-github"></i></a>
+      <a href="https://www.facebook.com/share/1E4aD1EMiA/"><i class="fab fa-facebook"></i></a>
     </div>
   </div>
-
-  <div class="project-card">
-    <h3>Salon Booking Application</h3>
-    <div class="hover-info">
-      Online appointment booking with time slots and notifications.
-    </div>
-  </div>
-
 </div>
+
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <div style="max-width:850px; margin:auto; font-size:18px; text-align:center; line-height:1.9;">
+    I am a multi-disciplinary digital creator focused on the intersection of code and content. I help brands build high-performance websites and high-engagement social presences.
+  </div>
 </section>
 
-<!-- CONTACT -->
-<section>
-<h2>Contact Me</h2>
-<form>
-  <input type="text" placeholder="Your Name" required>
-  <input type="email" placeholder="Your Email" required>
-  <textarea placeholder="Your Message" required></textarea>
-  <button class="btn">Send Message</button>
-</form>
+<section id="skills">
+  <h2 class="reveal">My Expertise</h2>
+  <div class="skills">
+    <div class="card skill-html reveal">
+      <i class="fas fa-code fa-3x"></i>
+      <h4>Frontend Dev</h4>
+      <div class="hover-info">Crafting responsive, semantic, and pixel-perfect websites using modern HTML, CSS, and JavaScript.</div>
+    </div>
+    <div class="card skill-strategy reveal">
+      <i class="fas fa-chart-line fa-3x"></i>
+      <h4>Growth Strategy</h4>
+      <div class="hover-info">Developing data-backed plans to scale social media accounts and increase brand reach organically.</div>
+    </div>
+    <div class="card skill-content reveal">
+      <i class="fas fa-video fa-3x"></i>
+      <h4>Content Creation</h4>
+      <div class="hover-info">Producing viral-ready short-form video content with a focus on hooks and storytelling.</div>
+    </div>
+    <div class="card skill-design reveal">
+      <i class="fas fa-palette fa-3x"></i>
+      <h4>Visual Design</h4>
+      <div class="hover-info">Creating professional marketing assets, thumbnails, and brand kits using Canva and Figma.</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="reveal">Featured Projects</h2>
+  <div class="projects">
+    <div class="project-card reveal">
+      <h3>STO Mapper</h3>
+      <p>A specialized analytical application designed to help graduates transition into the professional world by mapping skill sets to industry paths.</p>
+      <div class="hover-info"><strong>Tech Stack:</strong> HTML5, CSS3, JS</div>
+    </div>
+    <div class="project-card reveal">
+      <h3>Salon Booking App</h3>
+      <p>A full-stack business solution allowing clients to schedule appointments seamlessly with a robust management dashboard.</p>
+      <div class="hover-info"><strong>Tech Stack:</strong> UI/UX, Local Storage</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <h2>Let's Connect</h2>
+  <form onsubmit="sendEmail(event)">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+  </form>
 </section>
 
 <footer>
-© 2026 Pranit Choudhari • Designed by Me
+  <p>© 2026 Pranit Choudhari • Building the Digital Future</p>
 </footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle("dark");
+  const btn = document.querySelector('.toggle');
+  btn.innerHTML = document.body.classList.contains("dark") ? "☀️" : "🌙";
+}
+function toggleMenu(){
+  document.getElementById("nav-links").classList.toggle("show");
+}
+function sendEmail(e){
+  e.preventDefault();
+  let name = document.getElementById("name").value;
+  let message = document.getElementById("message").value;
+  window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=YOURMAIL@gmail.com&su=Inquiry&body=" + message;
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
