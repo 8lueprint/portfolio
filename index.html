@@ -171,17 +171,59 @@ footer{padding:60px 20px; text-align:center; background:var(--footer); color:#ff
 @media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } }
 
 @media (max-width: 767px) {
-  .menu-toggle{display:block;}
-  nav.menu-open .logo, nav.menu-open .menu-toggle { opacity: 0; pointer-events: none; }
+  .menu-toggle { display: block; }
+  
+  /* Ensure the nav links are hidden off-screen by default */
   nav ul {
-    position: fixed; top: 0; right: -100%; height: 100vh; width: 80%;
-    background: var(--nav-bg); flex-direction: column; padding: 100px 40px; 
-    transition: 0.4s ease-in-out; z-index: 1002; box-shadow: -10px 0 30px rgba(0,0,0,0.3); 
-    align-items: flex-start; gap: 25px;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Move completely off-screen */
+    height: 100vh;
+    width: 70%;   /* Slightly smaller width looks better on mobile */
+    background: var(--nav-bg);
+    flex-direction: column;
+    padding: 100px 30px; 
+    transition: 0.4s ease-in-out;
+    z-index: 1002;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.2); 
+    align-items: flex-start;
+    gap: 20px;
   }
-  nav ul.show { right: 0; }
-  .close-btn { display: block !important; position: absolute; top: 25px; left: 25px; font-size: 32px; cursor: pointer; color: var(--primary); z-index: 1003; }
+
+  nav ul.show {
+    right: 0; /* Slide in */
+  }
+
+  /* Keep the close button visible inside the slide-out menu */
+  .close-btn {
+    display: block !important;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--primary);
+  }
+
+  /* Make sure the overlay is visible and dims the background */
+  .nav-overlay.active {
+    display: block;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+  }
 }
+/* MOBILE MENU OVERLAY - FIXED */
+.nav-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: transparent; /* Changed from rgba(0,0,0,0.7) */
+  display: none;
+  z-index: 1001;
+  backdrop-filter: none;   /* Changed from blur(4px) */
+}
+.nav-overlay.active { display: block; }
+
 </style>
 </head>
 
@@ -303,18 +345,19 @@ footer{padding:60px 20px; text-align:center; background:var(--footer); color:#ff
 <script>
 function toggleMode(){ document.body.classList.toggle("dark"); }
 
-function toggleMenu(){ 
+function toggleMenu() { 
   const navLinks = document.getElementById("nav-links");
   const overlay = document.getElementById("overlay");
-  const navbar = document.getElementById("navbar");
-  const closeBtn = document.querySelector(".close-btn");
-  
-  navLinks.classList.toggle("show"); 
-  overlay.classList.toggle("active");
-  navbar.classList.toggle("menu-open");
-  
-  if(window.innerWidth < 767) {
-    closeBtn.style.display = navLinks.classList.contains("show") ? "block" : "none";
+  const isOpening = !navLinks.classList.contains("show");
+
+  if (isOpening) {
+    navLinks.classList.add("show");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden"; // Prevent background scroll
+  } else {
+    navLinks.classList.remove("show");
+    overlay.classList.remove("active");
+    document.body.style.overflow = "auto";   // Restore scroll
   }
 }
 
