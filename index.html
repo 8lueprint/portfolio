@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Pranit | Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,8 +14,8 @@
   --bg:#ffffff;
   --text:#111827;
   --card:#f3f6ff;
+  --nav-bg: #ffffff;
   --footer:#0f172a;
-  /* Skill Colors */
   --html-color: #e34c26;
   --strategy-color: #10b981;
   --content-color: #f59e0b;
@@ -26,404 +26,304 @@ body.dark{
   --bg:#0f172a;
   --text:#f1f5f9;
   --card:#1e293b;
+  --nav-bg: #1e293b;
   --footer:#020617;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
-body{background:var(--bg);color:var(--text);transition:.3s;scroll-behavior:smooth;overflow-x: hidden;}
+
+html, body { overflow-x: hidden; width: 100%; position: relative; }
+body{background:var(--bg);color:var(--text);transition:.3s;scroll-behavior:smooth; font-size: 18px;}
 
 /* NAVBAR */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:20px 10%;
+  padding:15px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  backdrop-filter:blur(10px);
-  background:rgba(255,255,255,0.85);
-  z-index:999;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  background: var(--nav-bg);
+  z-index:1000;
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
-body.dark nav{background:rgba(2,6,23,0.9);}
 
-.logo{font-size:28px;font-weight:700;color:var(--primary);}
-nav ul{display:flex;gap:40px;list-style:none;align-items:center;}
-nav ul li a{text-decoration:none;font-size:16px;color:var(--text);font-weight:500;}
-nav ul li a:hover{color:var(--primary);}
-.toggle{cursor:pointer;font-size:20px;}
-.menu-toggle{display:none;font-size:26px;cursor:pointer;}
+.logo{font-size:28px;font-weight:700;color:var(--primary); transition: opacity 0.3s;}
+nav ul{display:flex;gap:35px;list-style:none;align-items:center;}
+nav ul li a{text-decoration:none;font-size:17px;color:var(--text);font-weight:500;}
+.menu-toggle{display:none;font-size:28px;cursor:pointer; color:var(--text); transition: opacity 0.3s;}
 
-/* HERO SECTION - CENTERED */
+/* MOBILE MENU OVERLAY */
+.nav-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  z-index: 1001;
+  backdrop-filter: blur(4px);
+}
+.nav-overlay.active { display: block; }
+
+/* SECTIONS COMMON */
+section{padding: 80px 8%; width: 100%;}
+section h2{font-size: clamp(32px, 5vw, 45px); text-align:center; color:var(--primary); margin-bottom:50px;}
+
+/* HERO SECTION */
 .hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  text-align: center;   
-  padding: 100px 5% 60px; /* Reduced side padding for more horizontal space */
-}
-
-.hero-content{
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s forwards ease-out;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;  
+  padding: 120px 8% 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 50px;
 }
-
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
+.hero-content { flex: 1.2; }
+.hero-image-container { flex: 0.8; display: flex; justify-content: flex-end; }
+.hero h1{font-size: clamp(38px, 6vw, 70px); font-weight: 700; margin-bottom: 10px;}
+.hero h1 span{color:var(--primary);}
+.hero .tagline { font-weight: 600; color: var(--primary); font-size: clamp(16px, 1.8vw, 20px); display: block; }
+.hero .description { font-size: clamp(17px, 1.5vw, 20px); margin: 20px 0 35px; opacity: 0.8; line-height: 1.6; }
+.hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
 
 .profile-img{
-  width:200px;
-  height:200px;
-  border-radius: 50%;
+  width: clamp(250px, 30vw, 400px);
+  height: clamp(250px, 30vw, 400px);
+  border-radius: 30px;
   overflow: hidden;
   border: 6px solid var(--primary);
-  margin-bottom: 25px;
-  box-shadow: 0 10px 25px rgba(37,99,235,0.2);
-  background: #eee;
-  position: relative;
+  box-shadow: 0 20px 40px rgba(37,99,235,0.2);
+  animation: float 6s ease-in-out infinite;
 }
+.profile-img img{width:100%; height:100%; object-fit:cover;}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-.profile-img img{
+/* ABOUT SECTION */
+.about-container { display: flex; gap: 50px; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-text { flex: 1; font-size: 18px; line-height: 1.8; opacity: 0.9; }
+.about-stats { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.stat-box { background: var(--card); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(37,99,235,0.1); }
+.stat-box h3 { color: var(--primary); font-size: 30px; margin-bottom: 5px; }
+
+/* SKILLS SECTION */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
+  max-width: 1300px;
+  margin: 0 auto;
 }
-
-.hero h1{font-size:60px; line-height: 1.2; margin-bottom: 10px;}
-.hero h1 span{color:var(--primary);}
-
-/* FIX: Creator wrapping issue */
-.hero p{
-  font-size:22px; 
-  margin: 5px 0 30px; 
-  opacity: 0.8; 
-  white-space: nowrap; /* Forces text to stay on one line */
-  max-width: none;     /* Removes restrictions */
-}
-
-.btn{
-  padding:15px 45px;
-  border-radius:40px;
-  background:var(--primary);
-  color:#fff;
-  font-size:16px;
-  font-weight:600;
-  text-decoration:none;
-  display:inline-block;
-  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  cursor: pointer;
-}
-.btn:hover{transform: translateY(-8px); box-shadow: 0 12px 24px rgba(37,99,235,0.4);}
-
-.socials{
-  margin-top:30px;
-  display:flex;
-  gap:25px;
-}
-.socials a{
-  font-size:26px;
-  color:var(--text);
-  transition:.3s;
-}
-.socials a:hover{color:var(--primary); transform: translateY(-8px) scale(1.15);}
-
-/* SECTIONS */
-section{padding:100px 10%;}
-section h2{
-  font-size:40px;
-  text-align:center;
-  color:var(--primary);
-  margin-bottom:60px;
-}
-
-/* SKILLS - THE LIFT ANIMATION */
-.skills{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:25px;
-}
-
 .card {
-  background: var(--card);
-  padding: 45px 20px;
-  border-radius: 24px;
-  position: relative;
-  text-align: center;
-  border-bottom: 6px solid transparent;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-  overflow: hidden;
-  cursor: pointer;
+  background: var(--card); border-radius: 20px; padding: 40px 20px; text-align: center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;
+  border: 1px solid rgba(0,0,0,0.05); cursor: pointer; z-index: 1;
 }
+.card i, .card h4, .card p { pointer-events: none; }
+.card i { margin-bottom: 20px; transition: 0.4s; display: inline-block;}
+.card h4 { font-size: 20px; margin-bottom: 10px; }
+.card p { font-size: 16px; opacity: 0; max-height: 0; transition: 0.4s ease; overflow: hidden;}
+.card:hover { transform: scale(1.1); z-index: 50; color: #fff !important; }
+.card.html:hover { background: var(--html-color); box-shadow: 0 40px 80px rgba(227, 76, 38, 0.4); }
+.card.strategy:hover { background: var(--strategy-color); box-shadow: 0 40px 80px rgba(16, 185, 129, 0.4); }
+.card.content:hover { background: var(--content-color); box-shadow: 0 40px 80px rgba(245, 158, 11, 0.4); }
+.card.design:hover { background: var(--design-color); box-shadow: 0 40px 80px rgba(139, 92, 246, 0.4); }
+.card:hover i, .card:hover p { color: #fff !important; opacity: 1; max-height: 250px; margin-top: 15px; }
 
-.card:hover {
-  transform: translateY(-25px); /* Strong Lift */
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+/* PROJECTS SECTION */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.project-card { position: relative; border-radius: 20px; overflow: hidden; background: var(--card); height: 250px; cursor: pointer; border: 1px solid rgba(0,0,0,0.1); }
+.project-info { position: absolute; bottom: 0; width: 100%; padding: 25px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; transition: 0.3s; }
+.project-card:hover .project-info { padding-bottom: 40px; background: var(--primary); }
+.project-info h3 { margin-bottom: 5px; }
+
+/* BUTTONS */
+.btn{
+  padding: 16px 30px; border-radius:12px; background:var(--primary); color:#fff;
+  text-decoration:none; font-weight:600; display:inline-block; transition: 0.3s;
+  text-align: center; border: 2px solid var(--primary); cursor: pointer;
 }
+.btn.secondary { background: transparent; color: var(--primary); }
+.btn:hover{transform: translateY(-5px); box-shadow: 0 12px 25px rgba(37,99,235,0.3);}
 
-.card h4{font-size:19px; margin-top:15px;}
+/* CONTACT SECTION */
+form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+input, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1); background: var(--card); color: var(--text); font-size: 16px; outline: none; }
 
-/* Color coding for cards */
-.skill-html{ border-bottom-color: var(--html-color); }
-.skill-html i{ color: var(--html-color); }
-.skill-strategy{ border-bottom-color: var(--strategy-color); }
-.skill-strategy i{ color: var(--strategy-color); }
-.skill-content{ border-bottom-color: var(--content-color); }
-.skill-content i{ color: var(--content-color); }
-.skill-design{ border-bottom-color: var(--design-color); }
-.skill-design i{ color: var(--design-color); }
+.reveal {opacity: 0; transform: translateY(30px); transition: 0.8s ease-out;}
+.reveal.active {opacity: 1; transform: translateY(0);}
+footer{padding:60px 20px; text-align:center; background:var(--footer); color:#fff; margin-top: 50px;}
 
-.hover-info{
-  position:absolute;
-  inset:0;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:25px;
-  opacity:0;
-  transition: 0.4s ease-in-out;
-  font-size: 14px;
-  font-weight: 500;
-  pointer-events: none;
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .grid-container { grid-template-columns: repeat(2, 1fr); }
+  .about-container { flex-direction: column; }
 }
-
-.skill-html .hover-info { background: var(--html-color); }
-.skill-strategy .hover-info { background: var(--strategy-color); }
-.skill-content .hover-info { background: var(--content-color); }
-.skill-design .hover-info { background: var(--design-color); }
-
-.card:hover .hover-info { opacity:1; }
-
-/* PROJECTS - LIFT ANIMATION */
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-  gap:35px;
+@media (max-width: 900px) {
+  .hero { flex-direction: column-reverse; text-align: center; padding-top: 150px; }
+  .hero-buttons { justify-content: center; }
 }
+@media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } }
 
-.project-card{
-  background:var(--card);
-  padding:45px;
-  border-radius:28px;
-  position:relative;
-  overflow:hidden;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-20px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-}
-
-.project-card .hover-info{
-  position:absolute;
-  inset:0;
-  background: var(--primary);
-  color:#fff;
-  display:flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  transition:.4s ease;
-  padding:40px;
-  text-align: center;
-}
-.project-card:hover .hover-info{opacity:1;}
-
-/* SCROLL REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.9s cubic-bezier(0.2, 1, 0.3, 1);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* CONTACT */
-form{max-width:550px; margin:auto;}
-input,textarea{
-  width:100%;
-  padding:18px;
-  margin:12px 0;
-  border-radius:15px;
-  border: 1px solid rgba(0,0,0,0.1);
-  background: var(--card);
-  color: var(--text);
-  font-size: 16px;
-  outline: none;
-}
-
-footer{
-  background:var(--footer);
-  color:#fff;
-  text-align:center;
-  padding:70px 20px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
+@media (max-width: 767px) {
   .menu-toggle{display:block;}
-  nav ul{
-    position:absolute;
-    top:75px;
-    right:0;
-    background:var(--bg);
-    flex-direction:column;
-    width:260px;
-    padding:35px;
-    gap:25px;
-    transform:translateX(100%);
-    transition:.4s cubic-bezier(0.4, 0, 0.2, 1);
+  nav.menu-open .logo, nav.menu-open .menu-toggle { opacity: 0; pointer-events: none; }
+  nav ul {
+    position: fixed; top: 0; right: -100%; height: 100vh; width: 80%;
+    background: var(--nav-bg); flex-direction: column; padding: 100px 40px; 
+    transition: 0.4s ease-in-out; z-index: 1002; box-shadow: -10px 0 30px rgba(0,0,0,0.3); 
+    align-items: flex-start; gap: 25px;
   }
-  nav ul.show{transform:translateX(0);}
-  .hero h1{font-size:45px;}
-  /* Allow wrap on very small screens to prevent overflow */
-  .hero p { white-space: normal; font-size: 18px; }
+  nav ul.show { right: 0; }
+  .close-btn { display: block !important; position: absolute; top: 25px; left: 25px; font-size: 32px; cursor: pointer; color: var(--primary); z-index: 1003; }
 }
 </style>
 </head>
 
 <body>
 
-<nav>
+<div class="nav-overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<nav id="navbar">
   <h2 class="logo">Pranit</h2>
   <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
   <ul id="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li class="toggle" onclick="toggleMode()">🌙</li>
+    <div class="close-btn" onclick="toggleMenu()" style="display: none;"><i class="fas fa-times"></i></div>
+    <li><a href="#" onclick="toggleMenu()">Home</a></li>
+    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+    <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+    <li onclick="toggleMode()" style="cursor:pointer; font-size: 22px;">🌙</li>
   </ul>
 </nav>
 
 <div class="hero">
   <div class="hero-content">
-    <div class="profile-img">
-      <img src="photo.jpg" alt="Pranit Choudhari" onerror="this.src='https://ui-avatars.com/api/?name=Pranit+Choudhari&background=2563eb&color=fff&size=200'">
+    <h1 class="reveal">Hello, I'm <span>Pranit</span></h1>
+    <span class="tagline reveal">Web Developer • Social Media Strategist • Content Creator</span>
+    <p class="description reveal">I specialize in building digital architectures that combine seamless user experiences with high-growth marketing strategies.</p>
+    <div class="hero-buttons reveal">
+      <a href="#contact" class="btn">Get in Touch</a>
+      <a href="#" download class="btn secondary"><i class="fas fa-download"></i> Download CV</a>
     </div>
-
-    <h1>Hello, I'm <span>Pranit</span></h1>
-    <p>Web Developer • Social Media Strategist • Content Creator</p>
-
-    <a href="#" class="btn">Download Resume</a>
-
-    <div class="socials">
-      <a href="https://www.instagram.com/cawncept?igsh=aTdxeGg0ZTg3OGRj"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/8lueprinta"><i class="fab fa-github"></i></a>
-      <a href="https://www.facebook.com/share/1E4aD1EMiA/"><i class="fab fa-facebook"></i></a>
+  </div>
+  <div class="hero-image-container">
+    <div class="profile-img reveal">
+      <img src="photo.jpg" alt="Pranit" onerror="this.src='https://ui-avatars.com/api/?name=Pranit+Choudhari&background=2563eb&color=fff&size=400'">
     </div>
   </div>
 </div>
 
 <section id="about" class="reveal">
   <h2>About Me</h2>
-  <div style="max-width:850px; margin:auto; font-size:18px; text-align:center; line-height:1.9;">
-    I am a multi-disciplinary digital creator focused on the intersection of code and content. I help brands build high-performance websites and high-engagement social presences.
+  <div class="about-container">
+    <div class="about-text">
+      <p>I am a web developer and digital creator focused on building modern websites and growing brands online.</p><br>
+      <p>Whether it's writing clean code for a responsive web app or directing content that stops the scroll, my goal is always the same: creating impact.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box"><h3>3+</h3><p>Years Experience</p></div>
+      <div class="stat-box"><h3>10+</h3><p>Projects Done</p></div>
+      <div class="stat-box"><h3>300K+</h3><p>Community Reach</p></div>
+      <div class="stat-box"><h3>100%</h3><p>Dedication</p></div>
+    </div>
   </div>
 </section>
 
 <section id="skills">
   <h2 class="reveal">My Expertise</h2>
-  <div class="skills">
-    <div class="card skill-html reveal">
-      <i class="fas fa-code fa-3x"></i>
+  <div class="grid-container">
+    <div class="card html reveal">
+      <i class="fas fa-code fa-4x" style="color: var(--html-color);"></i>
       <h4>Frontend Dev</h4>
-      <div class="hover-info">Crafting responsive, semantic, and pixel-perfect websites using modern HTML, CSS, and JavaScript.</div>
+      <p>I build high-performance, pixel-perfect websites using modern frameworks, focusing on speed and responsiveness.</p>
     </div>
-    <div class="card skill-strategy reveal">
-      <i class="fas fa-chart-line fa-3x"></i>
+    <div class="card strategy reveal">
+      <i class="fas fa-chart-line fa-4x" style="color: var(--strategy-color);"></i>
       <h4>Growth Strategy</h4>
-      <div class="hover-info">Developing data-backed plans to scale social media accounts and increase brand reach organically.</div>
+      <p>Leveraging deep analytics and trend forecasting to scale organic reach and maximize engagement.</p>
     </div>
-    <div class="card skill-content reveal">
-      <i class="fas fa-video fa-3x"></i>
+    <div class="card content reveal">
+      <i class="fas fa-video fa-4x" style="color: var(--content-color);"></i>
       <h4>Content Creation</h4>
-      <div class="hover-info">Producing viral-ready short-form video content with a focus on hooks and storytelling.</div>
+      <p>Producing high-retention video content and visual storytelling that effectively converts casual viewers.</p>
     </div>
-    <div class="card skill-design reveal">
-      <i class="fas fa-palette fa-3x"></i>
+    <div class="card design reveal">
+      <i class="fas fa-palette fa-4x" style="color: var(--design-color);"></i>
       <h4>Visual Design</h4>
-      <div class="hover-info">Creating professional marketing assets, thumbnails, and brand kits using Canva and Figma.</div>
+      <p>Creating intuitive UI/UX flows and cohesive brand identities that provide value in a digital world.</p>
     </div>
   </div>
 </section>
 
-<section id="projects">
-  <h2 class="reveal">Featured Projects</h2>
-  <div class="projects">
+<section id="projects" class="reveal">
+  <h2>Featured Projects</h2>
+  <div class="project-grid">
     <div class="project-card reveal">
-      <h3>STO Mapper</h3>
-      <p>A specialized analytical application designed to help graduates transition into the professional world by mapping skill sets to industry paths.</p>
-      <div class="hover-info"><strong>Tech Stack:</strong> HTML5, CSS3, JS</div>
+      <div class="project-info">
+        <h3>E-Commerce Platform</h3>
+        <p>Full-stack shopping experience built with React.</p>
+      </div>
     </div>
     <div class="project-card reveal">
-      <h3>Salon Booking App</h3>
-      <p>A full-stack business solution allowing clients to schedule appointments seamlessly with a robust management dashboard.</p>
-      <div class="hover-info"><strong>Tech Stack:</strong> UI/UX, Local Storage</div>
+      <div class="project-info">
+        <h3>Brand Identity</h3>
+        <p>Complete visual overhaul for a tech startup.</p>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-info">
+        <h3>Viral Campaign</h3>
+        <p>Managed strategy resulting in 1M+ views.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="reveal">
-  <h2>Let's Connect</h2>
-  <form onsubmit="sendEmail(event)">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+  <h2>Get In Touch</h2>
+  <form onsubmit="event.preventDefault(); alert('Message Sent!');">
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
+    <button type="submit" class="btn">Send Message</button>
   </form>
 </section>
 
 <footer>
-  <p>© 2026 Pranit Choudhari • Building the Digital Future</p>
+  <p>© 2026 Pranit Choudhari</p>
 </footer>
 
 <script>
-function toggleMode(){
-  document.body.classList.toggle("dark");
-  const btn = document.querySelector('.toggle');
-  btn.innerHTML = document.body.classList.contains("dark") ? "☀️" : "🌙";
-}
-function toggleMenu(){
-  document.getElementById("nav-links").classList.toggle("show");
-}
-function sendEmail(e){
-  e.preventDefault();
-  let name = document.getElementById("name").value;
-  let message = document.getElementById("message").value;
-  window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=YOURMAIL@gmail.com&su=Inquiry&body=" + message;
-}
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+function toggleMode(){ document.body.classList.toggle("dark"); }
 
+function toggleMenu(){ 
+  const navLinks = document.getElementById("nav-links");
+  const overlay = document.getElementById("overlay");
+  const navbar = document.getElementById("navbar");
+  const closeBtn = document.querySelector(".close-btn");
+  
+  navLinks.classList.toggle("show"); 
+  overlay.classList.toggle("active");
+  navbar.classList.toggle("menu-open");
+  
+  if(window.innerWidth < 767) {
+    closeBtn.style.display = navLinks.classList.contains("show") ? "block" : "none";
+  }
+}
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('active'); }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
